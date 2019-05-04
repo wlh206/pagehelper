@@ -10,6 +10,7 @@ import com.zhouzhou.pagehelper.model.UserSearchModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,9 @@ public class TestController {
 
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andNameLike(searchModel.getName().trim());
+        if (!StringUtils.isEmpty(searchModel.getName())){
+            criteria.andNameLike(searchModel.getName().trim());
+        }
         List<User> users = userMapper.selectByExample(userExample);
         // 封装分页模型
         PageInfo<User> pageInfo = new PageInfo<>(users);
