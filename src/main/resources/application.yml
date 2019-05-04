@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml,classpath*:com.zhouzhou.pagehelper.dao.mapper
+  type-aliases-package: com.zhouzhou.pagehelper.dao.entity
