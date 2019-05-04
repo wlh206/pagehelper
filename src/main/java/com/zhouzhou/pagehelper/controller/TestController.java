@@ -23,7 +23,7 @@ import java.util.Random;
  * Date: 2019-05-03
  * Time: 10:00 AM
  */
-@Api(description = "测试用")
+@Api(description = "测试用") // 通过 localhost:8080/swagger-ui.html 访问测试地址
 @RestController
 public class TestController {
 
@@ -34,12 +34,16 @@ public class TestController {
     @GetMapping("/queryUser")
     @ApiOperation(value = "查询用户用模型", notes = "测试查询")
     public Response<PageInfo> getUser(UserSearchModel searchModel) {
+        // 设置初始页,和每页查找数量
         PageHelper.startPage(searchModel.getStartPage(),searchModel.getPageSize());
+
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andNameLike(searchModel.getName().trim());
         List<User> users = userMapper.selectByExample(userExample);
+        // 封装分页模型
         PageInfo<User> pageInfo = new PageInfo<>(users);
+
         Response<PageInfo> response = new Response<>();
         response.setData(pageInfo);
         response.setCode(Response.HttpResponseStatus.OK);
