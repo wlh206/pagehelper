@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -74,5 +75,11 @@ public class TestController {
         return response;
     }
 
+
+    @GetMapping("/docker/{str}")
+    @ApiOperation(value = "新增用户用模型", notes = "测试新增")
+    public Response<String> dockerTest(@PathVariable("str") String str) {
+       return new Response(str);
+    }
 
 }

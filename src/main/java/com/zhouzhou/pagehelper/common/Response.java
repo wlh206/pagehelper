@@ -22,6 +22,11 @@ public class Response<T> implements Serializable {
     public Response() {
     }
 
+    public Response(T result) {
+        this(HttpResponseStatus.OK, "OK", result);
+    }
+
+
     public Response(HttpResponseStatus code) {
         this.code = code;
     }
