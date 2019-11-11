@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-jre-alpine
 
 MAINTAINER zhouzhou
 LABEL name="pagehelper-demo" version="1.0" author="zhouzhou"
